@@ -1,6 +1,5 @@
 package MainBody;
 
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -20,46 +19,48 @@ public class DBUtil {
     public static Statement st;
     static PreparedStatement ps;
     public static ResultSet rs;
-    static String url="jdbc:mysql://8.134.205.162:3306/stu";
-    static String name="root";
-    static String pwd="135246";
+    static String url = "jdbc:mysql:你的数据库";
+    static String name = "root";
+    static String pwd = "密码";
+
     public static void initst() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection(url,name,pwd);
-            st=con.createStatement();
+            con = DriverManager.getConnection(url, name, pwd);
+            st = con.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
-        }catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
+
     public static void initps(String sql) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection(url,name,pwd);
-            ps=con.prepareStatement(sql);
-            rs= ps.executeQuery();
+            con = DriverManager.getConnection(url, name, pwd);
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     public static void closeDB() {
         try {
-            if (rs!=null) {
+            if (rs != null) {
                 rs.close();
             }
-            if (ps!=null) {
+            if (ps != null) {
                 ps.close();
             }
-            if (st!=null) {
+            if (st != null) {
                 st.close();
             }
-            if (con!=null) {
+            if (con != null) {
                 con.close();
             }
         } catch (Exception e) {
@@ -68,24 +69,3 @@ public class DBUtil {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
